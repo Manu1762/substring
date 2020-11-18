@@ -1,37 +1,31 @@
 #include <iostream>
+#include <string>
+#include <algorithm>
 using namespace std;
+
+void findAllsubstring(string X, string Y)
+{
+	int m, n;
+
+	if ((m = Y.length()) > (n = X.length()))
+		return;
+
+	for (int i = 0; i <= n - m; i++)
+	{
+		if (is_permutation(X.begin() + i, X.begin() + i + m, Y.begin()))
+		{
+			cout << "substring " <<"\""<< X.substr(i, m)<<"\"" <<
+					" present at index " << i << '\n';
+		}
+	}
+}
 
 int main()
 {
-    int rows;
-   int k;
-    cout << "Enter number of rows: ";
-    cin >> rows;
-    k=0;
-    for(int i = rows; i >= 1; --i)
-    {
-        for(int p=k;p>0;--p){
-        cout<<" ";
-        }
-         k = k + 1;
-        for(int j = k; j <= rows; ++j)
-        {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
-for(int i = rows; i > 1; --i)
-    {
-        for(int p=k-1;p>1;--p){
-        cout<<" ";
-        }
-         k = k - 1;
-        for(int j = k; j <= rows; ++j)
-        {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
+	string X = "XYYZXZYZXXYZ";
+	string Y = "XYZ";
 
-    return 0;
+	findAllsubstring(X, Y);
+
+	return 0;
 }
